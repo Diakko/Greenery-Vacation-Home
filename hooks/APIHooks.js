@@ -3,7 +3,7 @@ import {useState, useEffect} from 'react';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
-const appIdentifier = 'diakko_id_tag';
+const appIdentifier = 'greenery_vacation_home';
 
 const useLoadMedia = (all, userId) => {
   const [mediaArray, setMediaArray] = useState([]);
