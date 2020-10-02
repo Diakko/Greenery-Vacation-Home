@@ -15,7 +15,7 @@ import {postRegistration, postLogIn} from '../hooks/APIHooks';
 import {StyleSheet} from 'react-native';
 import {
   OutlinedTextField,
-} from 'react-native-material-textfield';
+} from '@ubaids/react-native-material-textfield';
 
 const RegisterForm = ({navigation}) => {
   const {setUser, setIsLoggedIn} = useContext(AuthContext);

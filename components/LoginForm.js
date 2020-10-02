@@ -10,8 +10,7 @@ import FormTextInput from './FormTextInput';
 import {StyleSheet} from 'react-native';
 import {
   OutlinedTextField,
-} from 'react-native-material-textfield';
-
+} from '@ubaids/react-native-material-textfield';
 
 const LoginForm = ({navigation}) => {
   const {setIsLoggedIn, setUser} = useContext(AuthContext);
