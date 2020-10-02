@@ -5,8 +5,10 @@ import {AuthContext} from '../contexts/AuthContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import {postLogIn} from '../hooks/APIHooks';
 import useLoginForm from '../hooks/LoginHooks';
-import {Form, Button, Text} from 'native-base';
+import {Form, Button, Text, View} from 'native-base';
 import FormTextInput from './FormTextInput';
+import {StyleSheet} from 'react-native';
+
 
 const LoginForm = ({navigation}) => {
   const {setIsLoggedIn, setUser} = useContext(AuthContext);
@@ -50,11 +52,33 @@ const LoginForm = ({navigation}) => {
         secureTextEntry={true}
         error={loginErrors.password}
       />
-      <Button block onPress={doLogin}><Text>Login!</Text></Button>
+      <View style={styles.container}>
+        <Button style={styles.formButton} block onPress={doLogin}><Text>Login</Text></Button>
+      </View>
     </Form>
 
   );
 };
+
+const styles = StyleSheet.create({
+  formButton: {
+    width: 250,
+    backgroundColor: '#4BBD6A',
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 20,
+    shadowOffset: {
+      height: 5,
+    },
+  },
+  container: {
+    paddingTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+});
 
 LoginForm.propTypes = {
   navigation: PropTypes.object,

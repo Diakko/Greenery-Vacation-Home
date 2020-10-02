@@ -8,8 +8,10 @@ import {
   Button,
   Text,
   Form,
+  View,
 } from 'native-base';
 import {postRegistration, postLogIn} from '../hooks/APIHooks';
+import {StyleSheet} from 'react-native';
 
 const RegisterForm = ({navigation}) => {
   const {setUser, setIsLoggedIn} = useContext(AuthContext);
@@ -45,7 +47,7 @@ const RegisterForm = ({navigation}) => {
     <Form>
       <FormTextInput
         autoCapitalize="none"
-        placeholder="username"
+        placeholder="Username"
         onChangeText={(txt) => handleInputChange('username', txt)}
         onEndEditing={(event) => {
           checkUserAvailable(event);
@@ -55,7 +57,7 @@ const RegisterForm = ({navigation}) => {
       />
       <FormTextInput
         autoCapitalize="none"
-        placeholder="password"
+        placeholder="Password"
         onChangeText={(txt) => handleInputChange('password', txt)}
         onEndEditing={(event) => handleInputEnd('password', event)}
         secureTextEntry={true}
@@ -63,7 +65,7 @@ const RegisterForm = ({navigation}) => {
       />
       <FormTextInput
         autoCapitalize="none"
-        placeholder="confirm password"
+        placeholder="Confirm Password"
         onChangeText={(txt) => handleInputChange('confirmPassword', txt)}
         onEndEditing={(event) => handleInputEnd('confirmPassword', event)}
         secureTextEntry={true}
@@ -71,24 +73,48 @@ const RegisterForm = ({navigation}) => {
       />
       <FormTextInput
         autoCapitalize="none"
-        placeholder="email"
+        placeholder="Email"
         onChangeText={(txt) => handleInputChange('email', txt)}
         onEndEditing={(event) => handleInputEnd('email', event)}
         error={registerErrors.email}
       />
       <FormTextInput
         autoCapitalize="none"
-        placeholder="full name"
+        placeholder="Full name"
         onChangeText={(txt) => handleInputChange('full_name', txt)}
         onEndEditing={(event) => handleInputEnd('full_name', event)}
         error={registerErrors.full_name}
       />
-      <Button block onPress={doRegister}>
-        <Text>Register!</Text>
-      </Button>
+      <View style={styles.container}>
+        <Button style={styles.formButton} block onPress={doRegister}>
+          <Text>Register</Text>
+        </Button>
+      </View>
     </Form>
   );
 };
+
+const styles = StyleSheet.create({
+  formButton: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    width: 250,
+    backgroundColor: '#4BBD6A',
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 20,
+    shadowOffset: {
+      height: 5,
+    },
+  },
+  container: {
+    paddingTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+});
 
 RegisterForm.propTypes = {
   navigation: PropTypes.object,

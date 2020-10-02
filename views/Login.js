@@ -5,13 +5,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {checkToken} from '../hooks/APIHooks';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
+
 import {
-  Container,
   Content,
-  Button,
   Text,
   View,
 } from 'native-base';
+import {ImageBackground, KeyboardAvoidingView, StyleSheet} from 'react-native';
 
 const Login = ({navigation}) => {
   const {setIsLoggedIn, setUser} = useContext(AuthContext);
@@ -35,30 +36,58 @@ const Login = ({navigation}) => {
     getToken();
   }, []);
   return (
-    <Container>
+    <ImageBackground source={require('../assets/gradient.png')}
+      style={{width: '100%', height: '100%'}}>
       <Content padder>
-        {showRegisteration ?
-          <LoginForm navigation={navigation} /> :
-          <RegisterForm navigation={navigation} />
-        }
-        <View style={{alignItems: 'center'}}>
-          <Text>or</Text>
-        </View>
+        <MaterialCommunityIcons
+          style={{alignSelf: 'center', paddingTop: 30}}
+          name="flower-tulip-outline"
+          size={100}
+          color={'#F9EB49'}
+        />
+        <Text style={styles.welcomeText}>
+          Welcome to Greenery!
+        </Text>
+        <KeyboardAvoidingView>
+          {showRegisteration ?
+            <LoginForm navigation={navigation} /> :
+            <RegisterForm navigation={navigation} />
+          }
 
-        <Button block onPress={() => {
-          setShowRegisteration(!showRegisteration);
-        }}>
-          <Text>
-            {showRegisteration ? 'Register' :
-              'Login'
-            }
+          <View style={{paddingTop: 10}}></View>
+          <Text block onPress={() => {
+            setShowRegisteration(!showRegisteration);
+          }}>
+            <Text style={styles.formText} >
+              {
+                showRegisteration ? 'Create Account' :
+                  'Return to Login'
+              }
+            </Text>
           </Text>
-        </Button>
+          <View style={{paddingBottom: 50}}></View>
+        </KeyboardAvoidingView>
       </Content>
-    </Container>
+    </ImageBackground >
   );
   // navigation.navigate('Home');
 };
+
+const styles = StyleSheet.create({
+  formText: {
+    color: '#165A28',
+    textAlign: 'center',
+    fontSize: 14,
+    fontFamily: 'Bellota',
+  },
+  welcomeText: {
+    fontFamily: 'Bellota_bold',
+    fontSize: 25,
+    color: 'white',
+    textAlign: 'center',
+    paddingBottom: 30,
+  },
+});
 
 Login.propTypes = {
   navigation: PropTypes.object,

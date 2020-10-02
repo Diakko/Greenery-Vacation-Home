@@ -14,6 +14,8 @@ const App = () => {
     await Font.loadAsync({
       Roboto: require('native-base/Fonts/Roboto.ttf'),
       Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+      Bellota: require('./assets/Bellota-Regular.otf'),
+      Bellota_bold: require('./assets/Bellota-Bold.otf'),
     });
     setFontReady(true);
   };
