@@ -12,7 +12,7 @@ import {
   Card,
   Body,
 } from 'native-base';
-import {Image} from 'react-native';
+import {Image, StyleSheet} from 'react-native';
 import {getAvatar} from '../hooks/APIHooks.js';
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
@@ -48,13 +48,18 @@ const Profile = ({navigation}) => {
             </CardItem>
             <CardItem cardBody>
               <Image source={{uri: mediaUrl + avatar[0].filename}}
-                style={{height: 400, width: null, flex: 1}}
+                style={{
+                  height: 100,
+                  width: null,
+                  flex: 1,
+                  borderRadius: 100,
+                }}
               />
             </CardItem>
             <CardItem>
               <Body>
-                <Text>Full name: {user.full_name}</Text>
-                <Text>Email: {user.email}</Text>
+                <Text>{user.full_name}</Text>
+                <Text>{user.email}</Text>
               </Body>
             </CardItem>
             <CardItem>
@@ -64,11 +69,11 @@ const Profile = ({navigation}) => {
                   onPress={() => {
                     navigation.navigate('MyFiles');
                   }}>
-                  <Text>My Files!</Text>
+                  <Text>My Files</Text>
                 </Button>
-                <Button block onPress={logout}>
-                  <Text>Log out!</Text>
-                </Button>
+                <Text block onPress={logout}>
+                  <Text style={styles.formText}>Log out</Text>
+                </Text>
               </Body>
             </CardItem>
           </Card>
@@ -77,6 +82,22 @@ const Profile = ({navigation}) => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  formText: {
+    color: '#165A28',
+    textAlign: 'center',
+    fontSize: 14,
+    fontFamily: 'Bellota',
+  },
+  welcomeText: {
+    fontFamily: 'Bellota_bold',
+    fontSize: 25,
+    color: 'white',
+    textAlign: 'center',
+    paddingBottom: 30,
+  },
+});
 
 Profile.propTypes = {
   navigation: PropTypes.object,

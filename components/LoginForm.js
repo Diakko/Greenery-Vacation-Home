@@ -23,19 +23,17 @@ const LoginForm = ({navigation}) => {
       console.log('validate on send failed');
       return;
     }
-
     try {
       const userData = await postLogIn(inputs);
-      console.log('user login', userData);
+      console.log('user login success:', userData);
       setIsLoggedIn(true);
       setUser(userData.user);
       await AsyncStorage.setItem('userToken', userData.token);
     } catch (e) {
-      console.error('login error', e.message);
+      console.log('login error', e.message);
     }
     // navigation.navigate('Home');
   };
-
 
   return (
     <Form>
@@ -47,7 +45,7 @@ const LoginForm = ({navigation}) => {
       />
       <FormTextInput
         autoCapitalize="none"
-        placeholder="password"
+        placeholder="Password"
         onChangeText={(txt) => handleInputChange('password', txt)}
         secureTextEntry={true}
         error={loginErrors.password}

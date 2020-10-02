@@ -4,7 +4,7 @@ import {validator} from '../utils/validator';
 const constraints = {
   username: {
     presence: {
-      message: 'Cannot be empty',
+      message: 'cannot be empty',
     },
     length: {
       minimum: 3,
@@ -13,7 +13,7 @@ const constraints = {
   },
   password: {
     presence: {
-      message: 'Cannot be empty',
+      message: 'cannot be empty',
     },
     length: {
       minimum: 5,

@@ -15,26 +15,30 @@ import {
 import {ImageBackground, KeyboardAvoidingView, StyleSheet} from 'react-native';
 
 const Login = ({navigation}) => {
-  const {setIsLoggedIn, setUser} = useContext(AuthContext);
+  const {setIsLoggedIn, setUser, user} = useContext(AuthContext);
   const [showRegisteration, setShowRegisteration] = useState(true);
 
   const getToken = async () => {
     const userToken = await AsyncStorage.getItem('userToken');
+    console.log('token', userToken);
     if (userToken) {
       try {
         const userData = await checkToken(userToken);
-        console.log('token valid: ', userData);
+        console.log('token valid', userData);
         setIsLoggedIn(true);
         setUser(userData);
       } catch (e) {
-        console.error('token check failed');
+        console.log('token check failed', e.message);
       }
-      // navigation.navigate('home');
+      // navigation.navigate('Home');
     }
   };
   useEffect(() => {
     getToken();
   }, []);
+
+  console.log('Login.js', user);
+
   return (
     <ImageBackground source={require('../assets/gradient.png')}
       style={{width: '100%', height: '100%'}}>
@@ -53,7 +57,6 @@ const Login = ({navigation}) => {
             <LoginForm navigation={navigation} /> :
             <RegisterForm navigation={navigation} />
           }
-
           <View style={{paddingTop: 10}}></View>
           <Text block onPress={() => {
             setShowRegisteration(!showRegisteration);

@@ -5,7 +5,7 @@ import {checkAvailable} from './APIHooks';
 const constraints = {
   username: {
     presence: {
-      message: 'Cannot be empty.',
+      message: 'cannot be empty.',
     },
     length: {
       minimum: 3,
@@ -14,7 +14,7 @@ const constraints = {
   },
   password: {
     presence: {
-      message: 'Cannot be empty.',
+      message: 'cannot be empty.',
     },
     length: {
       minimum: 5,
@@ -22,7 +22,7 @@ const constraints = {
     },
   },
   confirmPassword: {
-    equality: 'password',
+    equality: 'Password',
   },
   email: {
     presence: {
