@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import {AuthContext} from '../contexts/AuthContext';
@@ -12,6 +13,9 @@ import {
 } from 'native-base';
 import {postRegistration, postLogIn} from '../hooks/APIHooks';
 import {StyleSheet} from 'react-native';
+import {
+  OutlinedTextField,
+} from 'react-native-material-textfield';
 
 const RegisterForm = ({navigation}) => {
   const {setUser, setIsLoggedIn} = useContext(AuthContext);
@@ -45,9 +49,9 @@ const RegisterForm = ({navigation}) => {
 
   return (
     <Form>
-      <FormTextInput
+      <OutlinedTextField
         autoCapitalize="none"
-        placeholder="Username"
+        label="Username"
         onChangeText={(txt) => handleInputChange('username', txt)}
         onEndEditing={(event) => {
           checkUserAvailable(event);
@@ -55,32 +59,32 @@ const RegisterForm = ({navigation}) => {
         }}
         error={registerErrors.username}
       />
-      <FormTextInput
+      <OutlinedTextField
         autoCapitalize="none"
-        placeholder="Password"
+        label="Password"
         onChangeText={(txt) => handleInputChange('password', txt)}
         onEndEditing={(event) => handleInputEnd('password', event)}
         secureTextEntry={true}
         error={registerErrors.password}
       />
-      <FormTextInput
+      <OutlinedTextField
         autoCapitalize="none"
-        placeholder="Confirm Password"
+        label="Confirm Password"
         onChangeText={(txt) => handleInputChange('confirmPassword', txt)}
         onEndEditing={(event) => handleInputEnd('confirmPassword', event)}
         secureTextEntry={true}
         error={registerErrors.confirmPassword}
       />
-      <FormTextInput
+      <OutlinedTextField
         autoCapitalize="none"
-        placeholder="Email"
+        label="Email"
         onChangeText={(txt) => handleInputChange('email', txt)}
         onEndEditing={(event) => handleInputEnd('email', event)}
         error={registerErrors.email}
       />
-      <FormTextInput
+      <OutlinedTextField
         autoCapitalize="none"
-        placeholder="Full name"
+        label="Full name"
         onChangeText={(txt) => handleInputChange('full_name', txt)}
         onEndEditing={(event) => handleInputEnd('full_name', event)}
         error={registerErrors.full_name}

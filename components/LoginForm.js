@@ -8,6 +8,9 @@ import useLoginForm from '../hooks/LoginHooks';
 import {Form, Button, Text, View} from 'native-base';
 import FormTextInput from './FormTextInput';
 import {StyleSheet} from 'react-native';
+import {
+  OutlinedTextField,
+} from 'react-native-material-textfield';
 
 
 const LoginForm = ({navigation}) => {
@@ -37,15 +40,15 @@ const LoginForm = ({navigation}) => {
 
   return (
     <Form>
-      <FormTextInput
-        autoCapitalize="none"
-        placeholder="Username"
+      <OutlinedTextField
+        inputProps={{style: {color: 'white'}}} autoCapitalize="none"
+        label="Username"
         onChangeText={(txt) => handleInputChange('username', txt)}
         error={loginErrors.username}
       />
-      <FormTextInput
+      <OutlinedTextField
         autoCapitalize="none"
-        placeholder="Password"
+        label="Password"
         onChangeText={(txt) => handleInputChange('password', txt)}
         secureTextEntry={true}
         error={loginErrors.password}

@@ -22,7 +22,7 @@ const constraints = {
     },
   },
   confirmPassword: {
-    equality: 'Password',
+    equality: 'password',
   },
   email: {
     presence: {
