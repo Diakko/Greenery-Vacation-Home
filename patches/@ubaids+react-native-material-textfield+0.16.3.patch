@@ -1,5 +1,5 @@
 diff --git a/node_modules/@ubaids/react-native-material-textfield/src/components/field/index.js b/node_modules/@ubaids/react-native-material-textfield/src/components/field/index.js
-index 5f2942a..f0e6ef8 100644
+index 5f2942a..5118496 100644
 --- a/node_modules/@ubaids/react-native-material-textfield/src/components/field/index.js
 +++ b/node_modules/@ubaids/react-native-material-textfield/src/components/field/index.js
 @@ -1,5 +1,5 @@
@@ -27,8 +27,12 @@ index 5f2942a..f0e6ef8 100644
  
    return !!error
  }
-@@ -47,11 +47,11 @@ export default class TextField extends PureComponent {
-     fontSize: 16,
+@@ -44,14 +44,14 @@ export default class TextField extends PureComponent {
+ 
+     animationDuration: 225,
+ 
+-    fontSize: 16,
++    fontSize: 15,
      labelFontSize: 12,
  
 -    tintColor: 'rgb(0, 145, 234)',
