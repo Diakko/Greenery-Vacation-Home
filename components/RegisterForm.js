@@ -52,6 +52,10 @@ const RegisterForm = ({navigation}) => {
       <OutlinedTextField
         autoCapitalize="none"
         label="Username"
+        tintColor='rgb(255, 255, 255)'
+        textColor='rgb(255, 255, 255)'
+        baseColor='rgb(255, 255, 255)'
+        errorColor='rgb(249, 235, 73)'
         onChangeText={(txt) => handleInputChange('username', txt)}
         onEndEditing={(event) => {
           checkUserAvailable(event);
@@ -62,6 +66,10 @@ const RegisterForm = ({navigation}) => {
       <OutlinedTextField
         autoCapitalize="none"
         label="Password"
+        tintColor='rgb(255, 255, 255)'
+        textColor='rgb(255, 255, 255)'
+        baseColor='rgb(255, 255, 255)'
+        errorColor='rgb(249, 235, 73)'
         onChangeText={(txt) => handleInputChange('password', txt)}
         onEndEditing={(event) => handleInputEnd('password', event)}
         secureTextEntry={true}
@@ -70,6 +78,10 @@ const RegisterForm = ({navigation}) => {
       <OutlinedTextField
         autoCapitalize="none"
         label="Confirm Password"
+        tintColor='rgb(255, 255, 255)'
+        textColor='rgb(255, 255, 255)'
+        baseColor='rgb(255, 255, 255)'
+        errorColor='rgb(249, 235, 73)'
         onChangeText={(txt) => handleInputChange('confirmPassword', txt)}
         onEndEditing={(event) => handleInputEnd('confirmPassword', event)}
         secureTextEntry={true}
@@ -78,6 +90,10 @@ const RegisterForm = ({navigation}) => {
       <OutlinedTextField
         autoCapitalize="none"
         label="Email"
+        tintColor='rgb(255, 255, 255)'
+        textColor='rgb(255, 255, 255)'
+        baseColor='rgb(255, 255, 255)'
+        errorColor='rgb(249, 235, 73)'
         onChangeText={(txt) => handleInputChange('email', txt)}
         onEndEditing={(event) => handleInputEnd('email', event)}
         error={registerErrors.email}
@@ -85,6 +101,10 @@ const RegisterForm = ({navigation}) => {
       <OutlinedTextField
         autoCapitalize="none"
         label="Full name"
+        tintColor='rgb(255, 255, 255)'
+        textColor='rgb(255, 255, 255)'
+        baseColor='rgb(255, 255, 255)'
+        errorColor='rgb(249, 235, 73)'
         onChangeText={(txt) => handleInputChange('full_name', txt)}
         onEndEditing={(event) => handleInputEnd('full_name', event)}
         error={registerErrors.full_name}

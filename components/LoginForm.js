@@ -41,14 +41,22 @@ const LoginForm = ({navigation}) => {
   return (
     <Form>
       <OutlinedTextField
-        inputProps={{style: {color: 'white'}}} autoCapitalize="none"
+        autoCapitalize="none"
         label="Username"
+        tintColor='rgb(255, 255, 255)'
+        textColor='rgb(255, 255, 255)'
+        baseColor='rgb(255, 255, 255)'
+        errorColor='rgb(249, 235, 73)'
         onChangeText={(txt) => handleInputChange('username', txt)}
         error={loginErrors.username}
       />
       <OutlinedTextField
         autoCapitalize="none"
         label="Password"
+        tintColor='rgb(255, 255, 255)'
+        textColor='rgb(255, 255, 255)'
+        baseColor='rgb(255, 255, 255)'
+        errorColor='rgb(249, 235, 73)'
         onChangeText={(txt) => handleInputChange('password', txt)}
         secureTextEntry={true}
         error={loginErrors.password}
