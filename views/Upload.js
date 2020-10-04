@@ -11,6 +11,7 @@ import * as Permissions from 'expo-permissions';
 import {upload, appIdentifier, postTag} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Video} from 'expo-av';
+import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
 
 
 const Upload = ({navigation}) => {
@@ -118,16 +119,16 @@ const Upload = ({navigation}) => {
           </>
         }
         <Form>
-          <FormTextInput
+          <OutlinedTextField
             autoCapitalize="none"
-            placeholder="title"
+            label='Title'
             value={inputs.title}
             onChangeText={(txt) => handleInputChange('title', txt)}
             error={uploadErrors.title}
           />
-          <FormTextInput
+          <OutlinedTextField
             autoCapitalize="none"
-            placeholder="description"
+            label='Description'
             value={inputs.description}
             onChangeText={(txt) => handleInputChange('description', txt)}
             error={uploadErrors.description}

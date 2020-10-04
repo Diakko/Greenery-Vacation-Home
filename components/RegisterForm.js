@@ -103,7 +103,7 @@ const RegisterForm = ({navigation}) => {
         label="Full name"
         tintColor='rgb(255, 255, 255)'
         textColor='rgb(255, 255, 255)'
-        baseColor='rgb(255, 255, 255)'
+        baseColor='rgba(255, 255, 255, 75)'
         errorColor='rgb(249, 235, 73)'
         onChangeText={(txt) => handleInputChange('full_name', txt)}
         onEndEditing={(event) => handleInputEnd('full_name', event)}
