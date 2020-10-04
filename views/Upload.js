@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Container, Content, Form, Text} from 'native-base';
+import {Button, Container, Content, Form, Text, View} from 'native-base';
 import FormTextInput from '../components/FormTextInput';
 import {Image, Platform} from 'react-native';
 import useUploadForm from '../hooks/UploadHooks';
@@ -118,6 +118,7 @@ const Upload = ({navigation}) => {
             }
           </>
         }
+        <View style={{paddingBottom: 30}}></View>
         <Form>
           <OutlinedTextField
             autoCapitalize="none"
@@ -134,18 +135,21 @@ const Upload = ({navigation}) => {
             error={uploadErrors.description}
           />
         </Form>
+        <View style={{padding: 10}}></View>
         <Button block onPress={pickImage}>
           <Text>Choose file</Text>
         </Button>
+        <View style={{padding: 5}}></View>
         <Button block
           disabled={(uploadErrors.title !== null ||
             uploadErrors.description !== null || image === null)}
           onPress={doUpload}>
           <Text>Upload</Text>
         </Button>
-        <Button block onPress={doReset}>
+        <View style={{padding: 5}}></View>
+        <Text style={{textAlign: 'center'}} block onPress={doReset}>
           <Text>Reset</Text>
-        </Button>
+        </Text>
       </Content>
     </Container>
   );
