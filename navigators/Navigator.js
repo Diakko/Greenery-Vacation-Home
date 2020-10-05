@@ -20,6 +20,7 @@ import {
   MaterialCommunityIcons,
   FontAwesome5,
 } from '@expo/vector-icons';
+import Caretakers from '../views/Caretakers';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,6 +33,15 @@ const TabScreen = () => {
           tabBarIcon: () => (
             <MaterialCommunityIcons
               name='flower-tulip-outline'
+              size={34}
+              color='black' />
+          ),
+        }} />
+      <Tab.Screen name='Caretakers' component={Caretakers}
+        options={{
+          tabBarIcon: () => (
+            <MaterialCommunityIcons
+              name='spray-bottle'
               size={34}
               color='black' />
           ),

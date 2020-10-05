@@ -23,6 +23,7 @@
     "expo-permissions": "~9.0.1",
     "expo-screen-orientation": "~1.1.1",
     "expo-status-bar": "^1.0.2",
+    "material-ui-community-icons": "^0.15.0",
     "native-base": "^2.13.14",
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
