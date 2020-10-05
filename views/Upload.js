@@ -8,7 +8,7 @@ import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import {upload, appIdentifier, postTag} from '../hooks/APIHooks';
+import {upload, appIdentifierPlants, postTag} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Video} from 'expo-av';
 import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
@@ -40,7 +40,7 @@ const Upload = ({navigation}) => {
 
       const postTagResponse = await postTag({
         file_id: resp.file_id,
-        tag: appIdentifier,
+        tag: appIdentifierPlants,
       }, userToken);
       console.log('posting tag', postTagResponse);
 

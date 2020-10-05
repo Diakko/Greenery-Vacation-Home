@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
-const appIdentifier = 'greenery_vacation_home';
 const appIdentifierPlants = 'greenery_vacation_home_plants';
 const appIdentifierCaretakers = 'greenery_vacation_home_caretakers';
 
@@ -13,7 +12,7 @@ const useLoadMedia = (all, userId) => {
   const loadMedia = async () => {
     try {
       // const response = await fetch(apiUrl + 'media');
-      const response = await fetch(apiUrl + 'tags/' + appIdentifier);
+      const response = await fetch(apiUrl + 'tags/' + appIdentifierPlants);
       const json = await response.json();
       let media = await Promise.all(json.map(async (item) => {
         const resp2 = await fetch(apiUrl + 'media/' + item.file_id);
@@ -262,7 +261,8 @@ export {
   checkAvailable,
   upload,
   postTag,
-  appIdentifier,
+  appIdentifierPlants,
+  appIdentifierCaretakers,
   getUser,
   // useMyMedia,
   deleteFile,
