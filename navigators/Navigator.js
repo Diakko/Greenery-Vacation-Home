@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-undef */
@@ -22,8 +23,10 @@ import {
   Entypo,
   MaterialCommunityIcons,
   FontAwesome5,
+  FontAwesome,
 } from '@expo/vector-icons';
 import Caretakers from '../views/Caretakers';
+import PropTypes from 'prop-types';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,7 +35,8 @@ const TabScreen = () => {
   return (
     <Tab.Navigator
       shifting
-      activeColor='white'
+      inactiveColor='white'
+      activeColor='#F9EB49'
       barStyle={{
         backgroundColor: '#4BBD6A',
       }}
@@ -40,41 +44,41 @@ const TabScreen = () => {
       <Tab.Screen name='Home'
         component={Home}
         options={{
-          tabBarIcon: () => (
+          tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
               name='flower-tulip-outline'
               size={26}
-              color='white' />
+              color={color} />
           ),
         }} />
       <Tab.Screen name='Caretakers'
         component={Caretakers}
         options={{
-          tabBarIcon: () => (
+          tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
               name='spray-bottle'
               size={28}
-              color='white' />
+              color={color} />
           ),
         }} />
       <Tab.Screen name='Profile'
         component={Profile}
         options={{
-          tabBarIcon: () => (
-            <AntDesign
+          tabBarIcon: ({color}) => (
+            <FontAwesome5
               name='user'
-              size={25}
-              color='white' />
+              size={20}
+              color={color} />
           ),
         }} />
       <Tab.Screen name='Upload'
         component={Upload}
         options={{
-          tabBarIcon: () => (
-            <AntDesign
-              name='clouduploado'
+          tabBarIcon: ({color}) => (
+            <Entypo
+              name='upload-to-cloud'
               size={25}
-              color='white' />
+              color={color} />
           ),
         }} />
     </Tab.Navigator>
@@ -114,6 +118,10 @@ const StackScreen = () => {
         )}
     </Stack.Navigator>
   );
+};
+
+TabScreen.propTypes = {
+  color: PropTypes.string,
 };
 
 const Navigator = () => {
