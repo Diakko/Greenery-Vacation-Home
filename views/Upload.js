@@ -1,14 +1,25 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Container, Content, Form, Text, View} from 'native-base';
-import FormTextInput from '../components/FormTextInput';
-import {Image, Platform} from 'react-native';
+import {
+  Button,
+  Container,
+  Content,
+  Form,
+  Picker,
+  Text,
+  View,
+} from 'native-base';
+import {Image, Platform, StyleSheet} from 'react-native';
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
-import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
-import {upload, appIdentifierPlants, postTag} from '../hooks/APIHooks';
+import {
+  upload,
+  appIdentifierPlants,
+  appIdentifierCaretakers,
+  postTag,
+} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Video} from 'expo-av';
 import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
@@ -18,6 +29,7 @@ const Upload = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fileType, setFileType] = useState('image');
+  const [selectedValue, setSelectedValue] = useState(true);
 
   const doUpload = async () => {
     setIsLoading(true);
@@ -38,10 +50,18 @@ const Upload = ({navigation}) => {
       const resp = await upload(formData, userToken);
       console.log('Upload', resp);
 
-      const postTagResponse = await postTag({
-        file_id: resp.file_id,
-        tag: appIdentifierPlants,
-      }, userToken);
+      let postTagResponse = '';
+      if (setSelectedValue(true)) {
+        postTagResponse = await postTag({
+          file_id: resp.file_id,
+          tag: appIdentifierPlants,
+        }, userToken);
+      } else {
+        postTagResponse = await postTag({
+          file_id: resp.file_id,
+          tag: appIdentifierCaretakers,
+        }, userToken);
+      }
       console.log('posting tag', postTagResponse);
 
 
@@ -135,7 +155,17 @@ const Upload = ({navigation}) => {
             error={uploadErrors.description}
           />
         </Form>
-        <View style={{padding: 10}}></View>
+        <Picker
+          selectedValue={selectedValue}
+          style={{
+            height: 50,
+            width: 150,
+          }}
+          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+        >
+          <Picker.Item label="Plants" value={true} />
+          <Picker.Item label="Caretakers" value={false} />
+        </Picker>
         <Button block onPress={pickImage}>
           <Text>Choose file</Text>
         </Button>
@@ -155,6 +185,25 @@ const Upload = ({navigation}) => {
   );
 };
 
+const styles = StyleSheet.create({
+  formButton: {
+    width: 250,
+    backgroundColor: '#4BBD6A',
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 20,
+    shadowOffset: {
+      height: 5,
+    },
+  },
+  container: {
+    paddingTop: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+});
 
 Upload.propTypes = {
   navigation: PropTypes.object,

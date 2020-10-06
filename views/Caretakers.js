@@ -8,7 +8,7 @@ const Caretakers = (props) => {
   const {navigation} = props;
   return (
     <SafeAreaView style={styles.container}>
-      <List navigation={navigation} all={true} />
+      <List navigation={navigation} all={true} plants={false} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );

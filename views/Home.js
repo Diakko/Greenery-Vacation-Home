@@ -8,7 +8,7 @@ const Home = (props) => {
   const {navigation} = props;
   return (
     <SafeAreaView style={styles.container}>
-      <List navigation={navigation} all={true} />
+      <List navigation={navigation} all={true} plants={true} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );

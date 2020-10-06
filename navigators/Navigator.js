@@ -2,7 +2,9 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-no-undef */
 import React, {useContext} from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {
+  createMaterialBottomTabNavigator,
+} from '@react-navigation/material-bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from '../views/Home';
@@ -13,6 +15,7 @@ import {AuthContext} from '../contexts/AuthContext';
 import Upload from '../views/Upload';
 import MyFiles from '../views/MyFiles';
 import Modify from '../views/Modify';
+import {getAvatar} from '../hooks/APIHooks.js';
 import {
   AntDesign,
   Ionicons,
@@ -22,46 +25,56 @@ import {
 } from '@expo/vector-icons';
 import Caretakers from '../views/Caretakers';
 
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const TabScreen = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name='Home' component={Home}
+    <Tab.Navigator
+      shifting
+      activeColor='white'
+      barStyle={{
+        backgroundColor: '#4BBD6A',
+      }}
+    >
+      <Tab.Screen name='Home'
+        component={Home}
         options={{
           tabBarIcon: () => (
             <MaterialCommunityIcons
               name='flower-tulip-outline'
-              size={34}
-              color='black' />
+              size={26}
+              color='white' />
           ),
         }} />
-      <Tab.Screen name='Caretakers' component={Caretakers}
+      <Tab.Screen name='Caretakers'
+        component={Caretakers}
         options={{
           tabBarIcon: () => (
             <MaterialCommunityIcons
               name='spray-bottle'
-              size={34}
-              color='black' />
+              size={28}
+              color='white' />
           ),
         }} />
-      <Tab.Screen name='Profile' component={Profile}
+      <Tab.Screen name='Profile'
+        component={Profile}
         options={{
           tabBarIcon: () => (
-            <FontAwesome5
+            <AntDesign
               name='user'
               size={25}
-              color='black' />
+              color='white' />
           ),
         }} />
-      <Tab.Screen name='Upload' component={Upload}
+      <Tab.Screen name='Upload'
+        component={Upload}
         options={{
           tabBarIcon: () => (
             <AntDesign
               name='clouduploado'
-              size={37}
-              color='black' />
+              size={25}
+              color='white' />
           ),
         }} />
     </Tab.Navigator>
@@ -71,11 +84,22 @@ const TabScreen = () => {
 const StackScreen = () => {
   const {isLoggedIn} = useContext(AuthContext);
   return (
-    <Stack.Navigator>
+    <Stack.Navigator >
       {isLoggedIn ? (
         <>
           <Stack.Screen name='Home' component={TabScreen}
-            options={{title: 'Greenery'}} />
+            options={{
+              title: 'Greenery',
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 25,
+              },
+            }} />
           <Stack.Screen name='Single' component={Single} />
           <Stack.Screen name='MyFiles' component={MyFiles} />
           <Stack.Screen name='Modify' component={Modify} />
