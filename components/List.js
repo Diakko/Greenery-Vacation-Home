@@ -5,9 +5,14 @@ import PropTypes from 'prop-types';
 import {useLoadMedia} from '../hooks/APIHooks';
 import {AuthContext} from '../contexts/AuthContext';
 
-const List = ({navigation, all}) => {
+const List = ({navigation, all, plants}) => {
   const {user} = useContext(AuthContext);
-  const mediaArray = useLoadMedia(all, user.user_id);
+  let mediaArray = '';
+  if (plants) {
+    mediaArray = useLoadMedia(all, user.user_id, plants);
+  } else {
+    mediaArray = useLoadMedia(all, user.user_id, plants);
+  }
 
   return (
     <FlatList
@@ -27,6 +32,7 @@ const List = ({navigation, all}) => {
 List.propTypes = {
   navigation: PropTypes.object,
   all: PropTypes.bool,
+  plants: PropTypes.bool,
 };
 
 export default List;
