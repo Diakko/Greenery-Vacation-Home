@@ -57,7 +57,7 @@ const TabScreen = () => {
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
               name='spray-bottle'
-              size={28}
+              size={26}
               color={color} />
           ),
         }} />
@@ -66,8 +66,8 @@ const TabScreen = () => {
         options={{
           tabBarIcon: ({color}) => (
             <FontAwesome5
-              name='user'
-              size={20}
+              name='user-circle'
+              size={25}
               color={color} />
           ),
         }} />

@@ -15,7 +15,7 @@ import {
 } from 'native-base';
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {getAvatar} from '../hooks/APIHooks.js';
-import {FontAwesome, AntDesign} from '@expo/vector-icons';
+import {FontAwesome, AntDesign, SimpleLineIcons} from '@expo/vector-icons';
 
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
@@ -54,12 +54,12 @@ const Profile = ({navigation}) => {
                 style={styles.avatar}
               />
               <View style={{padding: 10}} >
-                <AntDesign
+                <SimpleLineIcons
                   style={styles.logOut}
-                  name="logout"
+                  name='logout'
                   size={20}
                   color={'#F9EB49'} block onPress={logout}>
-                </AntDesign>
+                </SimpleLineIcons>
               </View>
             </View>
             <Text style={{

@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ListItem as Container, Body, Text, Button, Thumbnail, Icon, Content, CardItem, Card, Left} from 'native-base';
+import {ListItem as Container, Body, Text, Button, Thumbnail, Icon, Content, CardItem, Card, Left, Right} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {deleteFile} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -33,6 +33,14 @@ const ListItem = ({navigation, singleMedia, editable}) => {
                 <Text style={styles.title}>{singleMedia.title}</Text>
               </Body>
             </Left>
+            <Right>
+              <Button transparent onPress={
+                () => {
+                  navigation.navigate('Single', {file: singleMedia});
+                }}>
+                <Icon name={'eye'}></Icon>
+              </Button>
+            </Right>
           </CardItem>
           <CardItem>
             <Body>

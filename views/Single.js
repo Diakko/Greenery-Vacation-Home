@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from 'react';
+/* eslint-disable indent */
+import React, {useContext, useEffect, useState} from 'react';
 import {Image} from 'react-native';
 import PropTypes from 'prop-types';
 import {
@@ -13,6 +14,7 @@ import {
 } from 'native-base';
 import {Video} from 'expo-av';
 import {getUser} from '../hooks/APIHooks';
+import {AuthContext} from '../contexts/AuthContext';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as ScreenOrientation from 'expo-screen-orientation';
 
@@ -20,6 +22,7 @@ import * as ScreenOrientation from 'expo-screen-orientation';
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
 const Single = ({route}) => {
+  const {user} = useContext(AuthContext);
   const [error, setError] = useState(false);
   const [owner, setOwner] = useState({});
   const [videoRef, setVideoRef] = useState(null);
@@ -73,15 +76,11 @@ const Single = ({route}) => {
     <Container>
       <Content padder>
         <Card>
-          <CardItem>
+          <CardItem bordered>
             <Left>
-              <Icon name={'image'} />
+              <Icon name="person" />
+              <Text>{user.username}</Text>
             </Left>
-            <Right>
-              <Text>
-                {file.title}
-              </Text>
-            </Right>
           </CardItem>
           <CardItem cardBody>
             <>
@@ -111,6 +110,7 @@ const Single = ({route}) => {
               }
             </>
           </CardItem>
+
           <CardItem>
             <Text>
               {file.description}
@@ -118,7 +118,7 @@ const Single = ({route}) => {
           </CardItem>
           <CardItem>
             <Text>
-              By: {owner.username}
+              {owner.email}
             </Text>
           </CardItem>
         </Card>

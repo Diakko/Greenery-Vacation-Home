@@ -6,6 +6,7 @@ import {
   Container,
   Content,
   Form,
+  Item,
   Picker,
   Text,
   View,
@@ -155,21 +156,30 @@ const Upload = ({navigation}) => {
             error={uploadErrors.description}
           />
         </Form>
-        <Picker
-          selectedValue={selectedValue}
-          style={{
-            height: 50,
-            width: 150,
-          }}
-          onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
-        >
-          <Picker.Item label="Plants" value={true} />
-          <Picker.Item label="Caretakers" value={false} />
-        </Picker>
-        <Button block onPress={pickImage}>
-          <Text>Choose file</Text>
-        </Button>
-        <View style={{padding: 5}}></View>
+        <Form>
+          <Item picker>
+            <Picker
+              selectedValue={selectedValue}
+              style={{
+                height: 50,
+                width: 150,
+              }}
+              onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+            >
+              <Picker.Item label="Plants" value={true} />
+              <Picker.Item label="Caretakers" value={false} />
+            </Picker></Item>
+        </Form>
+        <View style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+          paddingBottom: 15,
+        }}>
+          <Button style={styles.formButton} block onPress={pickImage}>
+            <Text>Choose file</Text>
+          </Button>
+        </View>
         <Button block
           disabled={(uploadErrors.title !== null ||
             uploadErrors.description !== null || image === null)}
@@ -187,7 +197,7 @@ const Upload = ({navigation}) => {
 
 const styles = StyleSheet.create({
   formButton: {
-    width: 250,
+    width: 300,
     backgroundColor: '#4BBD6A',
     shadowColor: '#000',
     shadowOpacity: 0.3,
