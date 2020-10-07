@@ -36,7 +36,7 @@ npm i @react-navigation/native @react-navigation/bottom-tabs @react-navigation/s
 expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context @react-native-community/masked-view
 npm i native-base
 expo install expo-font expo-image-picker expo-permissions expo-constants
-npm install material-ui-community-icons
+npm i material-ui-community-icons
 
 
 To Start:

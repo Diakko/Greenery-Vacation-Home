@@ -258,6 +258,48 @@ const updateFile = async (fileId, fileInfo, token) => {
   }
 };
 
+const postComments = async (comment, token) => {
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-access-token': token,
+    },
+    body: JSON.stringify(comment),
+  };
+  try {
+    const response = await fetch(apiUrl + 'comments', options);
+    const result = await response.json();
+    if (response.ok) {
+      return result;
+    } else {
+      throw new Error(result.message);
+    }
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
+const getPostComments = async (id) => {
+  const options = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  };
+  try {
+    const response = await fetch(apiUrl + 'comments/file/' + id, options);
+    const result = await response.json();
+    if (response.ok) {
+      return result;
+    } else {
+      throw new Error(result.message);
+    }
+  } catch (e) {
+    throw new Error(e.message);
+  }
+};
+
 export {
   useLoadMedia,
   postLogIn,
@@ -273,4 +315,6 @@ export {
   // useMyMedia,
   deleteFile,
   updateFile,
+  postComments,
+  getPostComments,
 };
