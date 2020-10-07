@@ -18,6 +18,7 @@ import {getUser, postComments} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
+import {FontAwesome} from '@expo/vector-icons';
 
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
@@ -92,7 +93,8 @@ const Single = ({route}) => {
         <Card>
           <CardItem bordered>
             <Left>
-              <Icon name="person" />
+              <FontAwesome name="pagelines"
+                size={17} />
               <Text>{owner.username}</Text>
             </Left>
           </CardItem>
@@ -134,8 +136,8 @@ const Single = ({route}) => {
               {owner.email}
             </Text>
           </CardItem>
-          <CardItem>
-            <Form style={{width: 350, height: 500}}>
+          <Form>
+            <CardItem>
               <OutlinedTextField
                 autoCapitalize="none"
                 label='Comment'
@@ -143,8 +145,8 @@ const Single = ({route}) => {
                 onChangeText={(e) => setCommentText(e)}
               />
               <Button block onPress={doComment}><Text>Comment</Text></Button>
-            </Form>
-          </CardItem>
+            </CardItem>
+          </Form>
         </Card>
       </Content>
     </Container>

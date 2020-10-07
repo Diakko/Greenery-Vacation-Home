@@ -1,6 +1,10 @@
 import React from 'react';
-import {StyleSheet, StatusBar, SafeAreaView} from 'react-native';
-import List from '../components/List';
+import {
+  StyleSheet,
+  StatusBar,
+  SafeAreaView,
+  ImageBackground,
+} from 'react-native'; import List from '../components/List';
 import PropTypes from 'prop-types';
 
 
@@ -8,8 +12,12 @@ const Caretakers = (props) => {
   const {navigation} = props;
   return (
     <SafeAreaView style={styles.container}>
-      <List navigation={navigation} all={true} plants={false} />
-      <StatusBar style="auto" />
+      <ImageBackground
+        style={{width: '100%'}}
+        source={require('../assets/gradient.png')}>
+        <List navigation={navigation} all={true} plants={false} />
+        <StatusBar style="auto" />
+      </ImageBackground>
     </SafeAreaView>
   );
 };
