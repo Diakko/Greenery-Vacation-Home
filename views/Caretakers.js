@@ -16,8 +16,7 @@ const Caretakers = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 5,
-    backgroundColor: '#344a61',
+    backgroundColor: 'white',
     justifyContent: 'center',
   },
 });
