@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -31,7 +29,7 @@ const Upload = ({navigation}) => {
   const [image, setImage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [fileType, setFileType] = useState('image');
-  const [selectedValue, setSelectedValue] = useState(true);
+  const [plantsValue, setPlantsValue] = useState(true);
 
   const doUpload = async () => {
     setIsLoading(true);
@@ -53,7 +51,7 @@ const Upload = ({navigation}) => {
       console.log('Upload', resp);
 
       let postTagResponse = '';
-      if (setSelectedValue(true)) {
+      if (plantsValue) {
         postTagResponse = await postTag({
           file_id: resp.file_id,
           tag: appIdentifierPlants,
@@ -160,12 +158,14 @@ const Upload = ({navigation}) => {
         <Form>
           <Item picker>
             <Picker
-              selectedValue={selectedValue}
+              selectedValue={plantsValue}
               style={{
                 height: 50,
                 width: 150,
               }}
-              onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+              onValueChange={
+                (itemValue, itemIndex) => setPlantsValue(itemValue)
+              }
             >
               <Picker.Item label="Plants" value={true} />
               <Picker.Item label="Caretakers" value={false} />
@@ -215,6 +215,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 });
+
 
 Upload.propTypes = {
   navigation: PropTypes.object,

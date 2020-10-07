@@ -43,7 +43,7 @@ const Profile = ({navigation}) => {
   return (
     <View>
       {user &&
-        <View>
+        <View style={styles.container}>
           <ImageBackground
             style={{
               width: '100%',
@@ -76,14 +76,15 @@ const Profile = ({navigation}) => {
               textAlign: 'center',
             }}>{user.email}</Text>
           </ImageBackground>
-          <View style={{padding: 10}} />
-          <Button style={styles.formButton}
-            block
-            onPress={() => {
-              navigation.navigate('MyFiles');
-            }}>
-            <Text style={{color: 'white'}}>My Files</Text>
-          </Button>
+          <View style={styles.bottomContainer}>
+            <Button style={styles.formButton}
+              block
+              onPress={() => {
+                navigation.navigate('MyFiles');
+              }}>
+              <Text style={{color: 'white'}}>My Files</Text>
+            </Button>
+          </View>
         </View >
       }
     </View >
@@ -98,6 +99,17 @@ const styles = StyleSheet.create({
   },
   header: {
     height: 200,
+  },
+  container: {
+    width: null,
+    backgroundColor: 'white',
+  },
+  bottomContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column',
+    margin: 30,
+    width: null,
   },
   avatar: {
     width: 130,
