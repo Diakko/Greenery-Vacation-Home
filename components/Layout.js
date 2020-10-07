@@ -33,7 +33,7 @@ const Layout = (props) => {
 
         </Left>
         <Body>
-          <Title>MyApp</Title>
+          <Title>Greenery</Title>
         </Body>
         <Right></Right>
       </Header>

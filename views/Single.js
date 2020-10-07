@@ -7,7 +7,6 @@ import {
   CardItem,
   Left,
   Icon,
-  Right,
   Text,
   Content,
   Container,
@@ -91,15 +90,11 @@ const Single = ({route}) => {
     <Container>
       <Content padder>
         <Card>
-          <CardItem>
+          <CardItem bordered>
             <Left>
-              <Icon name={'image'} />
+              <Icon name="person" />
+              <Text>{owner.username}</Text>
             </Left>
-            <Right>
-              <Text>
-                {file.title}
-              </Text>
-            </Right>
           </CardItem>
           <CardItem cardBody>
             <>
@@ -136,7 +131,7 @@ const Single = ({route}) => {
           </CardItem>
           <CardItem>
             <Text>
-              By: {owner.username}
+              {owner.email}
             </Text>
           </CardItem>
           <CardItem>

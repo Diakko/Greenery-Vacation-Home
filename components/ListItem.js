@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {ListItem as NBListItem, Left, Body, Text, Right, Button, Thumbnail, Icon} from 'native-base';
+import {ListItem as Container, Body, Text, Button, Thumbnail, Icon, Content, CardItem, Card, Left, Right} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {deleteFile} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -23,52 +23,58 @@ const ListItem = ({navigation, singleMedia, editable}) => {
   };
 
   return (
-    <NBListItem style={{height: 150}} thumbnail>
-      <Left>
-        <Thumbnail
-          square
-          source={{uri: mediaUrl + singleMedia.thumbnails.w160}}
-        />
-      </Left>
-      <Body>
-        <Text style={styles.title}>{singleMedia.title}</Text>
-        <Text note numberOfLines={1} style={styles.description}>{singleMedia.description}</Text>
-      </Body>
-      <Right>
-        <Button onPress={
-          () => {
-            navigation.navigate('Single', {file: singleMedia});
+    <Container>
+      <Content>
+        <Card style={{flex: 0}}>
+          <CardItem>
+            <Left>
+              <Thumbnail source={{uri: mediaUrl + singleMedia.thumbnails.w160}} />
+              <Body>
+                <Text style={styles.title}>{singleMedia.title}</Text>
+              </Body>
+            </Left>
+            <Right>
+              <Button transparent onPress={
+                () => {
+                  navigation.navigate('Single', {file: singleMedia});
+                }}>
+                <Icon name={'eye'}></Icon>
+              </Button>
+            </Right>
+          </CardItem>
+          <CardItem>
+            <Body>
+              <Text note style={styles.description}>{singleMedia.description}</Text>
+            </Body>
+          </CardItem>
+          {editable && <>
+            <Button transparent onPress={
+              () => {
+                navigation.navigate('Modify', {file: singleMedia});
+              }
+            }><Icon name={'create'}></Icon><Text>Modify</Text>
+            </Button>
+            <Button danger transparent onPress={doDelete}>
+              <Icon name={'trash'}></Icon>
+              <Text>Delete</Text>
+            </Button>
+          </>
           }
-        }><Text>View</Text>
-        </Button>
-        {editable && <>
-          <Button transparent onPress={
-            () => {
-              navigation.navigate('Modify', {file: singleMedia});
-            }
-          }><Icon name={'create'}></Icon><Text>Modify</Text>
-          </Button>
-          <Button danger transparent onPress={doDelete}>
-            <Icon name={'trash'}></Icon>
-            <Text>Delete</Text>
-          </Button>
-        </>
-        }
-      </Right>
-    </NBListItem >
+        </Card>
+      </Content>
+    </Container >
   );
 };
 
 const styles = StyleSheet.create({
   title: {
-    fontWeight: 'bold',
-    fontSize: 22,
-    color: '#FFF',
+    textAlign: 'left',
+    fontSize: 15,
+    color: 'black',
   },
-  textBox: {
-    textAlign: 'center',
-    color: '#FFF',
-    fontFamily: 'Roboto',
+  description: {
+    textAlign: 'left',
+    fontSize: 13,
   },
 });
 

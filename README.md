@@ -37,6 +37,7 @@ expo install react-native-gesture-handler react-native-reanimated react-native-s
 npm i native-base
 expo install expo-font expo-image-picker expo-permissions expo-constants
 npm i material-ui-community-icons
+npm i @react-navigation/material-bottom-tabs react-native-paper
 
 
 To Start:

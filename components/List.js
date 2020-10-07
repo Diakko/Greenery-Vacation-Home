@@ -7,12 +7,7 @@ import {AuthContext} from '../contexts/AuthContext';
 
 const List = ({navigation, all, plants}) => {
   const {user} = useContext(AuthContext);
-  let mediaArray = '';
-  if (plants) {
-    mediaArray = useLoadMedia(all, user.user_id, plants);
-  } else {
-    mediaArray = useLoadMedia(all, user.user_id, plants);
-  }
+  const mediaArray = useLoadMedia(all, user.user_id, plants);
 
   return (
     <FlatList
