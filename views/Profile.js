@@ -1,21 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, {useContext, useState, useEffect, Component} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {AuthContext} from '../contexts/AuthContext';
 import PropTypes from 'prop-types';
 import AsyncStorage from '@react-native-community/async-storage';
-import {
-  Button,
-  CardItem,
-  Icon,
-  Container,
-  Content,
-  Card,
-  Body,
-  Header,
-} from 'native-base';
+import {Button} from 'native-base';
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {getAvatar} from '../hooks/APIHooks.js';
-import {FontAwesome, AntDesign, SimpleLineIcons} from '@expo/vector-icons';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
@@ -43,7 +34,7 @@ const Profile = ({navigation}) => {
   return (
     <View>
       {user &&
-        <View style={styles.container}>
+        <View>
           <ImageBackground
             style={{
               width: '100%',
@@ -53,13 +44,18 @@ const Profile = ({navigation}) => {
               <Image source={{uri: mediaUrl + avatar[0].filename}}
                 style={styles.avatar}
               />
-              <View style={{padding: 10}} >
-                <SimpleLineIcons
+              <View style={{padding: 3}} >
+                <Text style={{
+                  color: '#F9EB49',
+                  fontFamily: 'Bellota',
+                  textAlign: 'right',
+                  fontSize: 11,
+                }}>Logout</Text>
+                <MaterialCommunityIcons
                   style={styles.logOut}
                   name='logout'
                   size={20}
-                  color={'#F9EB49'} block onPress={logout}>
-                </SimpleLineIcons>
+                  color={'#F9EB49'} block onPress={logout} />
               </View>
             </View>
             <Text style={{
@@ -80,9 +76,17 @@ const Profile = ({navigation}) => {
             <Button style={styles.formButton}
               block
               onPress={() => {
-                navigation.navigate('MyFiles');
+                navigation.navigate('MyPlants');
               }}>
-              <Text style={{color: 'white'}}>My Files</Text>
+              <Text style={{color: 'white'}}>My Plants</Text>
+            </Button>
+            <View style={{padding: 10}}></View>
+            <Button style={styles.formButton}
+              block
+              onPress={() => {
+                navigation.navigate('MyCaretakers');
+              }}>
+              <Text style={{color: 'white'}}>My Caretakers</Text>
             </Button>
           </View>
         </View >

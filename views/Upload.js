@@ -68,7 +68,11 @@ const Upload = ({navigation}) => {
 
       setTimeout(() => {
         doReset();
-        navigation.push('Home');
+        if (plantsValue) {
+          navigation.push('Home');
+        } else {
+          navigation.push('Caretakers');
+        }
         setIsLoading(false);
       }, 2000);
     } catch (e) {
@@ -143,6 +147,10 @@ const Upload = ({navigation}) => {
         <Form>
           <OutlinedTextField
             autoCapitalize="none"
+            tintColor='rgb(75, 189, 106)'
+            textColor='rgb(75, 189, 106)'
+            baseColor='rgb(75, 189, 106)'
+            errorColor='rgb(249, 235, 73)'
             label='Title'
             value={inputs.title}
             onChangeText={(txt) => handleInputChange('title', txt)}
@@ -150,6 +158,10 @@ const Upload = ({navigation}) => {
           />
           <OutlinedTextField
             autoCapitalize="none"
+            tintColor='rgb(75, 189, 106)'
+            textColor='rgb(75, 189, 106)'
+            baseColor='rgb(75, 189, 106)'
+            errorColor='rgb(249, 235, 73)'
             label='Description'
             value={inputs.description}
             onChangeText={(txt) => handleInputChange('description', txt)}
@@ -157,49 +169,69 @@ const Upload = ({navigation}) => {
           />
         </Form>
         <Form>
-          <Item picker>
-            <Picker
-              selectedValue={plantsValue}
-              style={{
-                height: 50,
-                width: 150,
-              }}
-              onValueChange={
-                (itemValue, itemIndex) => setPlantsValue(itemValue)
-              }
-            >
-              <Picker.Item label="Plants" value={true} />
-              <Picker.Item label="Caretakers" value={false} />
-            </Picker></Item>
+          <Picker
+            mode='dialog'
+            selectedValue={plantsValue}
+            style={{
+              height: 50,
+              width: 150,
+            }}
+            onValueChange={
+              (itemValue, itemIndex) => setPlantsValue(itemValue)
+            }>
+            <Item label="Plants" value={true} />
+            <Item label="Caretakers" value={false} />
+          </Picker>
         </Form>
         <View style={{
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'row',
-          paddingBottom: 15,
+          paddingBottom: 10,
         }}>
           <Button style={styles.formButton} block onPress={pickImage}>
             <Text>Choose file</Text>
           </Button>
         </View>
-        <Button block
-          disabled={(uploadErrors.title !== null ||
+        <View style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+          paddingBottom: 10,
+        }}>
+          <Button style={{
+            width: 250,
+            backgroundColor: '#318053',
+            shadowColor: '#000',
+            shadowOpacity: 0.3,
+            shadowRadius: 10,
+            elevation: 20,
+            shadowOffset: {
+              height: 5,
+            },
+          }} block disabled={(uploadErrors.title !== null ||
             uploadErrors.description !== null || image === null)}
-          onPress={doUpload}>
-          <Text>Upload</Text>
-        </Button>
+            onPress={doUpload}>
+            <Text>Upload</Text>
+          </Button>
+        </View>
+
         <View style={{padding: 5}}></View>
         <Text style={{textAlign: 'center'}} block onPress={doReset}>
-          <Text>Reset</Text>
+          <Text style={{
+            color: '#318053',
+            fontFamily: 'Bellota',
+            fontSize: 15,
+          }} > Reset</Text>
         </Text>
       </Content>
-    </Container>
+    </Container >
   );
 };
 
 const styles = StyleSheet.create({
   formButton: {
-    width: 300,
+    width: 250,
     backgroundColor: '#4BBD6A',
     shadowColor: '#000',
     shadowOpacity: 0.3,

@@ -259,6 +259,8 @@ const updateFile = async (fileId, fileInfo, token) => {
 };
 
 const postComments = async (comment, token) => {
+  console.log('Comment', comment);
+
   const options = {
     method: 'POST',
     headers: {
@@ -269,6 +271,7 @@ const postComments = async (comment, token) => {
   };
   try {
     const response = await fetch(apiUrl + 'comments', options);
+
     const result = await response.json();
     if (response.ok) {
       return result;
@@ -277,28 +280,24 @@ const postComments = async (comment, token) => {
     }
   } catch (e) {
     throw new Error(e.message);
+  }
+  // http://media.mw.metropolia.fi/wbma/docs/#api-Tag-PostTag
+};
+
+const getComments = async (fileId) => {
+  try {
+    // const response = await fetch(apiUrl + 'media');
+    const response = await fetch(apiUrl + 'comments/file/' + fileId);
+    const json = await response.json();
+
+    console.log('load comments', json);
+
+    return json;
+  } catch (e) {
+    console.error(e);
   }
 };
 
-const getPostComments = async (id) => {
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-  try {
-    const response = await fetch(apiUrl + 'comments/file/' + id, options);
-    const result = await response.json();
-    if (response.ok) {
-      return result;
-    } else {
-      throw new Error(result.message);
-    }
-  } catch (e) {
-    throw new Error(e.message);
-  }
-};
 
 export {
   useLoadMedia,
@@ -316,5 +315,5 @@ export {
   deleteFile,
   updateFile,
   postComments,
-  getPostComments,
+  getComments,
 };

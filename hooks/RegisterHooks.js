@@ -64,7 +64,7 @@ const useSignUpForm = (callback) => {
 
   const handleInputEnd = (name, event) => {
     // dis is for validation
-    // console.log('RegisterHooks.js', name, event.nativeEvent.text);
+    console.log('RegisterHooks.js', name, event.nativeEvent.text);
     const text = event.nativeEvent.text;
     setInputs((inputs) => {
       return {

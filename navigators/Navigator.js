@@ -14,7 +14,7 @@ import Single from '../views/Single';
 import Login from '../views/Login';
 import {AuthContext} from '../contexts/AuthContext';
 import Upload from '../views/Upload';
-import MyFiles from '../views/MyFiles';
+import MyPlants from '../views/MyPlants';
 import Modify from '../views/Modify';
 import {getAvatar} from '../hooks/APIHooks.js';
 import {
@@ -27,6 +27,7 @@ import {
 } from '@expo/vector-icons';
 import Caretakers from '../views/Caretakers';
 import PropTypes from 'prop-types';
+import MyCaretakers from '../views/MyCaretakers';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -104,9 +105,57 @@ const StackScreen = () => {
                 fontSize: 25,
               },
             }} />
-          <Stack.Screen name='Single' component={Single} />
-          <Stack.Screen name='MyFiles' component={MyFiles} />
-          <Stack.Screen name='Modify' component={Modify} />
+          <Stack.Screen name='Single' component={Single}
+            options={{
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 20,
+              },
+            }} />
+          <Stack.Screen name='MyPlants' component={MyPlants}
+            options={{
+              title: 'My Plants',
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 20,
+              },
+            }} />
+          <Stack.Screen name='MyCaretakers' component={MyCaretakers}
+            options={{
+              title: 'My Caretakers',
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 20,
+              },
+            }} />
+          <Stack.Screen name='Modify' component={Modify}
+            options={{
+              title: 'Edit',
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 20,
+              },
+            }} />
         </>
       ) : (
           <>
