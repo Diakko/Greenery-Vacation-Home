@@ -3,8 +3,8 @@ import {useState, useEffect} from 'react';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
-const appIdentifierPlants = 'greenery_vacation_home_plants';
-const appIdentifierCaretakers = 'greenery_vacation_home_caretakers';
+const appIdentifierPlants = 'gvh_plants';
+const appIdentifierCaretakers = 'gvh_caretakers';
 
 const useLoadMedia = (all, userId, plants) => {
   const [mediaArray, setMediaArray] = useState([]);
@@ -42,31 +42,6 @@ const useLoadMedia = (all, userId, plants) => {
 
   return mediaArray;
 };
-
-// const useMyMedia = () => {
-//   const [mediaArray, setMediaArray] = useState([]);
-
-//   const loadMedia = async () => {
-//     try {
-//       const response = await fetch(apiUrl + 'tags/' + appIdentifier);
-//       const json = await response.json();
-//       const media = await Promise.all(json.map(async (item) => {
-//         const resp2 = await fetch(apiUrl + 'media/' + item.file_id);
-//         const json2 = await resp2.json();
-//         return json2;
-//       }));
-//       // console.log('loadMedia', media);
-//       setMediaArray(media);
-//     } catch (e) {
-//       console.error(e);
-//     }
-//   };
-//   useEffect(() => {
-//     loadMedia();
-//   }, []);
-
-//   return mediaArray;
-// };
 
 const postLogIn = async (userCreds) => {
   const options = {
@@ -311,7 +286,6 @@ export {
   appIdentifierPlants,
   appIdentifierCaretakers,
   getUser,
-  // useMyMedia,
   deleteFile,
   updateFile,
   postComments,

@@ -105,6 +105,19 @@ const StackScreen = () => {
                 fontSize: 25,
               },
             }} />
+          <Stack.Screen name='Caretakers' component={Caretakers}
+            options={{
+              title: 'Greenery',
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 25,
+              },
+            }} />
           <Stack.Screen name='Single' component={Single}
             options={{
               headerPressColorAndroid: '#4BBD6A',

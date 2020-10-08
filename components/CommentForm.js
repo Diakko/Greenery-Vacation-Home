@@ -2,13 +2,13 @@ import React, {useState, useEffect} from 'react';
 import {View, Button, Text, CardItem} from 'native-base';
 import useCommentForm from '../hooks/CommentHooks';
 import AsyncStorage from '@react-native-community/async-storage';
-import {postComments, getComments, getUser} from '../hooks/APIHooks';
+import {postComments, getComments/* getUser */} from '../hooks/APIHooks';
 import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
 import PropTypes from 'prop-types';
 
 const CommentForm = ({fileId}) => {
   const [comments, setComments] = useState([]);
-  const [owner, setOwner] = useState({});
+  /* const [owner, setOwner] = useState({}); */
   const {
     handleInputChange,
     validateOnSend,
@@ -55,7 +55,7 @@ const CommentForm = ({fileId}) => {
 
   useEffect(() => {
     fetchComments();
-    // fetchOwner();
+    /* fetchOwner(); */
   }, []);
   console.log('rivi 51', comments);
 
@@ -69,7 +69,7 @@ const CommentForm = ({fileId}) => {
       {comments.map((comment) => (
         <View
           key={comment.comment_id} >
-          {/* <Text>{owner.username}</Text> */}
+          <Text>{comment.user_id}</Text>
           <CardItem style={{
             padding: 15,
             borderWidth: 1,
