@@ -45,7 +45,7 @@ const RegisterForm = ({navigation}) => {
     }
   };
 
-  console.log('RegisterForm', registerErrors);
+  console.log('RegisterForm errors', registerErrors);
 
   return (
     <Form>

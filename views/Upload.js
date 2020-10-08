@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
@@ -68,7 +69,11 @@ const Upload = ({navigation}) => {
 
       setTimeout(() => {
         doReset();
-        navigation.push('Home');
+        if (plantsValue) {
+          navigation.push('Home');
+        } else {
+          navigation.push('Caretakers');
+        }
         setIsLoading(false);
       }, 2000);
     } catch (e) {
@@ -206,8 +211,7 @@ const Upload = ({navigation}) => {
               height: 5,
             },
           }} block disabled={(uploadErrors.title !== null ||
-            uploadErrors.description !== null || image === null)}
-            onPress={doUpload}>
+            uploadErrors.description !== null || image === null)} onPress={doUpload}>
             <Text>Upload</Text>
           </Button>
         </View>

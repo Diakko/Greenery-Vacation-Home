@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {View, Button, Text, Card, Container, CardItem} from 'native-base';
+import {View, Button, Text, CardItem} from 'native-base';
 import useCommentForm from '../hooks/CommentHooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import {postComments, getComments, getUser} from '../hooks/APIHooks';
@@ -39,6 +39,8 @@ const CommentForm = ({fileId}) => {
       };
     });
 
+
+
     try {
       setComments(await getComments(fileId));
     } catch (e) {
@@ -46,14 +48,15 @@ const CommentForm = ({fileId}) => {
     }
   };
 
-  /*const fetchOwner = async () => {
+  /* const fetchOwner = async () => {
     const userToken = await AsyncStorage.getItem('userToken');
-    setOwner(await getUser(file.user_id, userToken));
-  };*/
+    setOwner(await getUser(comment.user_id, userToken));
+  }; */
+
 
   useEffect(() => {
     fetchComments();
-    //fetchOwner();
+    // fetchOwner();
   }, []);
   console.log('rivi 51', comments);
 
@@ -67,12 +70,12 @@ const CommentForm = ({fileId}) => {
       {comments.map((comment) => (
         <View
           key={comment.comment_id} >
-          <Text>{owner.username}</Text>
+          {/* <Text>{owner.username}</Text> */}
           <CardItem style={{
             padding: 15,
             borderWidth: 1,
             borderRadius: 5,
-            //borderColor: 'rgb(75, 189, 106)',
+            // borderColor: 'rgb(75, 189, 106)',
           }}>
             <Text style={{fontSize: 14}}>{comment.comment}</Text>
           </CardItem>

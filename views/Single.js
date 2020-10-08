@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {Image, ImageBackground} from 'react-native';
+import {Image} from 'react-native';
 import PropTypes from 'prop-types';
 import {
   Card,
@@ -9,15 +9,12 @@ import {
   Text,
   Content,
   Container,
-  Form,
-  Button,
   View,
 } from 'native-base';
 import {Video} from 'expo-av';
-import {getUser, postComments} from '../hooks/APIHooks';
+import {getUser} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import * as ScreenOrientation from 'expo-screen-orientation';
-import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
 import {FontAwesome} from '@expo/vector-icons';
 import CommentForm from '../components/CommentForm';
 

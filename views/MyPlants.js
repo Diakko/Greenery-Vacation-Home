@@ -5,14 +5,14 @@ import List from '../components/List';
 import PropTypes from 'prop-types';
 
 
-const MyFiles = (props) => {
+const MyPlants = (props) => {
   const {navigation} = props;
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
         style={{width: '100%'}}
         source={require('../assets/gradient.png')}>
-        <List navigation={navigation} all={false} />
+        <List navigation={navigation} all={false} plants={true} />
         <StatusBar style="auto" />
       </ImageBackground>
     </SafeAreaView>
@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
   },
 });
 
-MyFiles.propTypes = {
+MyPlants.propTypes = {
   navigation: PropTypes.object,
 };
 
-export default MyFiles;
+export default MyPlants;

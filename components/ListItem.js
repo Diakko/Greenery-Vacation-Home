@@ -4,14 +4,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {ListItem as Container, Body, Text, Button, Thumbnail, Icon, Content, CardItem, Card, Left, Right, View} from 'native-base';
-import {ImageBackground, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {deleteFile} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {
-  AntDesign,
   FontAwesome,
-  MaterialCommunityIcons,
 } from '@expo/vector-icons';
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
@@ -23,7 +21,7 @@ const ListItem = ({navigation, singleMedia, editable}) => {
       const userToken = await AsyncStorage.getItem('userToken');
       const result = await deleteFile(singleMedia.file_id, userToken);
       console.log('Delete file: ', result);
-      navigation.replace('MyFiles');
+      navigation.replace('MyPlants');
     } catch (e) {
       console.error('deletebutton', e);
     }

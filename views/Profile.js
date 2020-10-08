@@ -1,18 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, {useContext, useState, useEffect, Component} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {AuthContext} from '../contexts/AuthContext';
 import PropTypes from 'prop-types';
 import AsyncStorage from '@react-native-community/async-storage';
-import {
-  Button,
-  CardItem,
-  Icon,
-  Container,
-  Content,
-  Card,
-  Body,
-  Header,
-} from 'native-base';
+import {Button} from 'native-base';
 import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
 import {getAvatar} from '../hooks/APIHooks.js';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
@@ -85,9 +76,17 @@ const Profile = ({navigation}) => {
             <Button style={styles.formButton}
               block
               onPress={() => {
-                navigation.navigate('MyFiles');
+                navigation.navigate('MyPlants');
               }}>
-              <Text style={{color: 'white'}}>My Files</Text>
+              <Text style={{color: 'white'}}>Plants</Text>
+            </Button>
+            <View style={{padding: 10}}></View>
+            <Button style={styles.formButton}
+              block
+              onPress={() => {
+                navigation.navigate('MyCaretakers');
+              }}>
+              <Text style={{color: 'white'}}>Care</Text>
             </Button>
           </View>
         </View >

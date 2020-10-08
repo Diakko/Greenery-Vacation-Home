@@ -6,7 +6,6 @@ import {checkToken} from '../hooks/APIHooks';
 import LoginForm from '../components/LoginForm';
 import RegisterForm from '../components/RegisterForm';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
-
 import {
   Content,
   Text,

@@ -52,7 +52,6 @@ const Modify = ({navigation, route}) => {
   return (
     <Container>
       <Content padder>
-        {/* TODO add media player (see single.js) */}
         <Form>
           <OutlinedTextField
             autoCapitalize="none"
