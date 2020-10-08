@@ -183,18 +183,35 @@ const Upload = ({navigation}) => {
           justifyContent: 'center',
           alignItems: 'center',
           flexDirection: 'row',
-          paddingBottom: 15,
+          paddingBottom: 10,
         }}>
           <Button style={styles.formButton} block onPress={pickImage}>
             <Text>Choose file</Text>
           </Button>
         </View>
-        <Button block
-          disabled={(uploadErrors.title !== null ||
+        <View style={{
+          justifyContent: 'center',
+          alignItems: 'center',
+          flexDirection: 'row',
+          paddingBottom: 10,
+        }}>
+          <Button style={{
+            width: 250,
+            backgroundColor: '#318053',
+            shadowColor: '#000',
+            shadowOpacity: 0.3,
+            shadowRadius: 10,
+            elevation: 20,
+            shadowOffset: {
+              height: 5,
+            },
+          }} block disabled={(uploadErrors.title !== null ||
             uploadErrors.description !== null || image === null)}
-          onPress={doUpload}>
-          <Text>Upload</Text>
-        </Button>
+            onPress={doUpload}>
+            <Text>Upload</Text>
+          </Button>
+        </View>
+
         <View style={{padding: 5}}></View>
         <Text style={{textAlign: 'center'}} block onPress={doReset}>
           <Text style={{
@@ -204,13 +221,13 @@ const Upload = ({navigation}) => {
           }} > Reset</Text>
         </Text>
       </Content>
-    </Container>
+    </Container >
   );
 };
 
 const styles = StyleSheet.create({
   formButton: {
-    width: 300,
+    width: 250,
     backgroundColor: '#4BBD6A',
     shadowColor: '#000',
     shadowOpacity: 0.3,
