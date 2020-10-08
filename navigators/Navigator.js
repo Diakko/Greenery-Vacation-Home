@@ -104,9 +104,44 @@ const StackScreen = () => {
                 fontSize: 25,
               },
             }} />
-          <Stack.Screen name='Single' component={Single} />
-          <Stack.Screen name='MyFiles' component={MyFiles} />
-          <Stack.Screen name='Modify' component={Modify} />
+          <Stack.Screen name='Single' component={Single}
+            options={{
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 20,
+              },
+            }} />
+          <Stack.Screen name='MyFiles' component={MyFiles}
+            options={{
+              title: 'My Files',
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 20,
+              },
+            }} />
+          <Stack.Screen name='Modify' component={Modify}
+            options={{
+              title: 'Edit',
+              headerPressColorAndroid: '#4BBD6A',
+              headerStyle: {
+                backgroundColor: '#4BBD6A',
+              },
+              headerTintColor: '#fff',
+              headerTitleStyle: {
+                fontFamily: 'Bellota_bold',
+                fontSize: 20,
+              },
+            }} />
         </>
       ) : (
           <>

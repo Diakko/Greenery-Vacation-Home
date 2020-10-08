@@ -8,6 +8,11 @@ import {ImageBackground, StyleSheet} from 'react-native';
 import {deleteFile} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {
+  AntDesign,
+  FontAwesome,
+  MaterialCommunityIcons,
+} from '@expo/vector-icons';
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
 
@@ -27,11 +32,11 @@ const ListItem = ({navigation, singleMedia, editable}) => {
   return (
     <Container>
       <Content>
-        <TouchableOpacity onPress={
-          () => {
-            navigation.navigate('Single', {file: singleMedia});
-          }}>
-          <Card style={{flex: 0}} >
+        <Card style={{flex: 1}} >
+          <TouchableOpacity onPress={
+            () => {
+              navigation.navigate('Single', {file: singleMedia});
+            }}>
             <CardItem header bordered>
               <Left>
                 <Thumbnail source={{uri: mediaUrl + singleMedia.thumbnails.w160}} />
@@ -40,26 +45,30 @@ const ListItem = ({navigation, singleMedia, editable}) => {
                 </Body>
               </Left>
             </CardItem>
-            <CardItem>
-              <Body>
-                <Text note style={styles.description}>{singleMedia.description}</Text>
-              </Body>
-            </CardItem>
-            {editable && <>
+
+          </TouchableOpacity>
+          <CardItem>
+            <Body>
+              <Text note numberOfLines={3} style={styles.description}>{singleMedia.description}</Text>
+            </Body>
+          </CardItem>
+          {editable && <>
+            <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
               <Button transparent onPress={
                 () => {
                   navigation.navigate('Modify', {file: singleMedia});
                 }
-              }><Icon name={'create'}></Icon><Text>Modify</Text>
+              }><FontAwesome style={{color: '#318053', fontSize: 20}} name={'edit'} />
+                <Text style={{color: '#318053'}}>Modify</Text>
               </Button>
-              <Button danger transparent onPress={doDelete}>
-                <Icon name={'trash'}></Icon>
-                <Text>Delete</Text>
+              <Button transparent onPress={doDelete}>
+                <FontAwesome style={{color: '#318053', fontSize: 20}} name={'trash'} />
+                <Text style={{color: '#318053'}}>Delete</Text>
               </Button>
-            </>
-            }
-          </Card>
-        </TouchableOpacity>
+            </View>
+          </>
+          }
+        </Card>
       </Content >
     </Container>
   );
@@ -69,10 +78,11 @@ const styles = StyleSheet.create({
   title: {
     textAlign: 'left',
     color: 'black',
+    fontFamily: 'Roboto_medium',
   },
   description: {
     textAlign: 'left',
-    fontSize: 13,
+    fontSize: 14,
   },
 });
 

@@ -8,6 +8,7 @@ import Constants from 'expo-constants';
 import * as Permissions from 'expo-permissions';
 import {updateFile} from '../hooks/APIHooks';
 import AsyncStorage from '@react-native-community/async-storage';
+import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
 
 
 const Modify = ({navigation, route}) => {
@@ -52,14 +53,14 @@ const Modify = ({navigation, route}) => {
       <Content padder>
         {/* TODO add media player (see single.js) */}
         <Form>
-          <FormTextInput
+          <OutlinedTextField
             autoCapitalize="none"
             placeholder="title"
             value={inputs.title}
             onChangeText={(txt) => handleInputChange('title', txt)}
             error={uploadErrors.title}
           />
-          <FormTextInput
+          <OutlinedTextField
             autoCapitalize="none"
             placeholder="description"
             value={inputs.description}

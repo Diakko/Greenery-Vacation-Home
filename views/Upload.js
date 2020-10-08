@@ -143,6 +143,10 @@ const Upload = ({navigation}) => {
         <Form>
           <OutlinedTextField
             autoCapitalize="none"
+            tintColor='rgb(75, 189, 106)'
+            textColor='rgb(75, 189, 106)'
+            baseColor='rgb(75, 189, 106)'
+            errorColor='rgb(249, 235, 73)'
             label='Title'
             value={inputs.title}
             onChangeText={(txt) => handleInputChange('title', txt)}
@@ -150,6 +154,10 @@ const Upload = ({navigation}) => {
           />
           <OutlinedTextField
             autoCapitalize="none"
+            tintColor='rgb(75, 189, 106)'
+            textColor='rgb(75, 189, 106)'
+            baseColor='rgb(75, 189, 106)'
+            errorColor='rgb(249, 235, 73)'
             label='Description'
             value={inputs.description}
             onChangeText={(txt) => handleInputChange('description', txt)}
@@ -157,20 +165,19 @@ const Upload = ({navigation}) => {
           />
         </Form>
         <Form>
-          <Item picker>
-            <Picker
-              selectedValue={plantsValue}
-              style={{
-                height: 50,
-                width: 150,
-              }}
-              onValueChange={
-                (itemValue, itemIndex) => setPlantsValue(itemValue)
-              }
-            >
-              <Picker.Item label="Plants" value={true} />
-              <Picker.Item label="Caretakers" value={false} />
-            </Picker></Item>
+          <Picker
+            mode='dialog'
+            selectedValue={plantsValue}
+            style={{
+              height: 50,
+              width: 150,
+            }}
+            onValueChange={
+              (itemValue, itemIndex) => setPlantsValue(itemValue)
+            }>
+            <Item label="Plants" value={true} />
+            <Item label="Caretakers" value={false} />
+          </Picker>
         </Form>
         <View style={{
           justifyContent: 'center',
@@ -190,7 +197,11 @@ const Upload = ({navigation}) => {
         </Button>
         <View style={{padding: 5}}></View>
         <Text style={{textAlign: 'center'}} block onPress={doReset}>
-          <Text>Reset</Text>
+          <Text style={{
+            color: '#318053',
+            fontFamily: 'Bellota',
+            fontSize: 15,
+          }} > Reset</Text>
         </Text>
       </Content>
     </Container>

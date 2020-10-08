@@ -1,17 +1,17 @@
 /* eslint-disable indent */
 import React, {useEffect, useState} from 'react';
-import {Image} from 'react-native';
+import {Image, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {
   Card,
   CardItem,
   Left,
-  Icon,
   Text,
   Content,
   Container,
   Form,
   Button,
+  View,
 } from 'native-base';
 import {Video} from 'expo-av';
 import {getUser, postComments} from '../hooks/APIHooks';
@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import * as ScreenOrientation from 'expo-screen-orientation';
 import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
 import {FontAwesome} from '@expo/vector-icons';
+import CommentForm from "../components/CommentForm";
 
 
 const mediaUrl = 'http://media.mw.metropolia.fi/wbma/uploads/';
@@ -90,64 +91,66 @@ const Single = ({route}) => {
   return (
     <Container>
       <Content padder>
-        <Card>
-          <CardItem bordered>
-            <Left>
-              <FontAwesome name="pagelines"
-                size={17} />
-              <Text>{owner.username}</Text>
-            </Left>
-          </CardItem>
-          <CardItem cardBody>
-            <>
-              {file.media_type === 'image' ?
-                <Image
-                  source={{uri: mediaUrl + file.filename}}
-                  style={{height: 400, width: null, flex: 1}}
-                /> :
-                <Video
-                  ref={handleVideoRef}
-                  source={{
-                    uri:
-                      error ? 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' :
-                        mediaUrl + file.filename,
-                  }}
-                  style={{height: 400, width: null, flex: 1}}
-                  useNativeControls={true}
-                  resizeMode="cover"
-                  posterSource={{uri: mediaUrl + file.screenshot}}
-                  usePoster={true}
-                  posterStyle={{height: 400, width: null, flex: 1}}
-                  onError={(err) => {
-                    console.log('video error', err);
-                    setError(true);
-                  }}
-                />
-              }
-            </>
-          </CardItem>
-          <CardItem>
-            <Text>
-              {file.description}
-            </Text>
-          </CardItem>
-          <CardItem>
-            <Text>
-              {owner.email}
-            </Text>
-          </CardItem>
-          <Form>
-            <CardItem>
-              <OutlinedTextField
-                autoCapitalize="none"
-                label='Comment'
-                value={commentText}
-                onChangeText={(e) => setCommentText(e)}
-              />
-              <Button block onPress={doComment}><Text>Comment</Text></Button>
+        <ImageBackground style={{width: '100%'}}
+          source={require('../assets/gradient.png')}>
+          <Card>
+            <CardItem bordered>
+              <Left>
+                <FontAwesome name="pagelines"
+                  size={17} />
+                <Text>{owner.username}</Text>
+              </Left>
             </CardItem>
-          </Form>
-        </Card>
+            <CardItem cardBody>
+              <>
+                {file.media_type === 'image' ?
+                  <Image
+                    source={{uri: mediaUrl + file.filename}}
+                    style={{height: 400, width: null, flex: 1}}
+                  /> :
+                  <Video
+                    ref={handleVideoRef}
+                    source={{
+                      uri:
+                        error ? 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' :
+                          mediaUrl + file.filename,
+                    }}
+                    style={{height: 400, width: null, flex: 1}}
+                    useNativeControls={true}
+                    resizeMode="cover"
+                    posterSource={{uri: mediaUrl + file.screenshot}}
+                    usePoster={true}
+                    posterStyle={{height: 400, width: null, flex: 1}}
+                    onError={(err) => {
+                      console.log('video error', err);
+                      setError(true);
+                    }}
+                  />
+                }
+              </>
+            </CardItem>
+            <CardItem>
+              <Text>
+                {file.description}
+              </Text>
+            </CardItem>
+            <CardItem>
+              <Text>
+                {owner.email}
+              </Text>
+            </CardItem>
+            <View style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'row',
+              paddingTop: 20,
+            }}>
+              <CardItem>
+                <CommentForm fileId={file.file_id} />
+              </CardItem>
+            </View>
+          </Card>
+        </ImageBackground>
       </Content>
     </Container>
   );
