@@ -46,15 +46,15 @@ const CommentForm = ({fileId}) => {
     }
   };
 
-  /* const fetchOwner = async () => {
+  /*const fetchOwner = async () => {
     const userToken = await AsyncStorage.getItem('userToken');
     setOwner(await getUser(comment.user_id, userToken));
-  }; */
+  };*/
 
 
   useEffect(() => {
     fetchComments();
-    // fetchOwner();
+    //fetchOwner();
   }, []);
   console.log('rivi 51', comments);
 
@@ -72,7 +72,7 @@ const CommentForm = ({fileId}) => {
             paddingVertical: 5,
           }}
           key={comment.comment_id} >
-          {/* <Text>{owner.username}</Text> */}
+          <Text>{comment.user_id}</Text>
           <CardItem style={{
             padding: 15,
             borderWidth: 1,
