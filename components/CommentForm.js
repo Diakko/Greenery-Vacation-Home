@@ -40,7 +40,6 @@ const CommentForm = ({fileId}) => {
     });
 
 
-
     try {
       setComments(await getComments(fileId));
     } catch (e) {
@@ -50,7 +49,7 @@ const CommentForm = ({fileId}) => {
 
   /* const fetchOwner = async () => {
     const userToken = await AsyncStorage.getItem('userToken');
-    setOwner(await getUser(comment.user_id, userToken));
+    setOwner(await getUser(owner.user_id, userToken));
   }; */
 
 
