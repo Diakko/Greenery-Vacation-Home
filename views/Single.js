@@ -135,7 +135,7 @@ const Single = ({route}) => {
             </Text>
           </CardItem>
           <CardItem>
-            <Form style={{width: 350, height: 500}}>
+            <Form style={{width: '100%', height: 500}}>
               <OutlinedTextField
                 autoCapitalize="none"
                 label='Comment'
