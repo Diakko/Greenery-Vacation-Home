@@ -49,7 +49,6 @@ const ListItem = ({navigation, singleMedia, editable}) => {
               </Body>
             </CardItem>
           </TouchableOpacity>
-
           {editable && <>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
               <Button transparent onPress={

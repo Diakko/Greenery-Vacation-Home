@@ -7,6 +7,8 @@ import PropTypes from 'prop-types';
 
 const CommentForm = ({fileId}) => {
   const [comments, setComments] = useState([]);
+  //const [owner, setOwner] = useState({});
+
   const [] = useState({});
   const {
     handleInputChange,
@@ -38,7 +40,6 @@ const CommentForm = ({fileId}) => {
       };
     });
 
-
     try {
       setComments(await getComments(fileId));
     } catch (e) {
@@ -46,10 +47,10 @@ const CommentForm = ({fileId}) => {
     }
   };
 
-  /*const fetchOwner = async () => {
+  /* const fetchOwner = async () => {
     const userToken = await AsyncStorage.getItem('userToken');
-    setOwner(await getUser(comment.user_id, userToken));
-  };*/
+    setOwner(await getUser(file.user_id.username, userToken));
+  }; */
 
 
   useEffect(() => {
