@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+/* eslint-disable indent */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
@@ -12,7 +12,7 @@ import {
   Text,
   View,
 } from 'native-base';
-import {Image, Platform, StyleSheet} from 'react-native';
+import {Image, ImageBackground, Platform, StyleSheet} from 'react-native';
 import useUploadForm from '../hooks/UploadHooks';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -25,6 +25,7 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 import {Video} from 'expo-av';
 import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
+import FormTextInput from '../components/FormTextInput';
 
 
 const Upload = ({navigation}) => {
@@ -128,103 +129,105 @@ const Upload = ({navigation}) => {
 
   return (
     <Container>
-      <Content padder>
-        {image &&
-          <>
-            {fileType === 'image' ?
-              <Image
-                source={{uri: image}}
-                style={{height: 400, width: null, flex: 1}}
-              /> :
-              <Video
-                source={{uri: image}}
-                style={{height: 400, width: null, flex: 1}}
-                useNativeControls={true}
-              />
-            }
-          </>
-        }
-        <View style={{paddingBottom: 30}}></View>
-        <Form>
-          <OutlinedTextField
-            autoCapitalize="none"
-            tintColor='rgb(75, 189, 106)'
-            textColor='rgb(75, 189, 106)'
-            baseColor='rgb(75, 189, 106)'
-            errorColor='rgb(249, 235, 73)'
-            label='Title'
-            value={inputs.title}
-            onChangeText={(txt) => handleInputChange('title', txt)}
-            error={uploadErrors.title}
-          />
-          <OutlinedTextField
-            autoCapitalize="none"
-            tintColor='rgb(75, 189, 106)'
-            textColor='rgb(75, 189, 106)'
-            baseColor='rgb(75, 189, 106)'
-            errorColor='rgb(249, 235, 73)'
-            label='Description'
-            value={inputs.description}
-            onChangeText={(txt) => handleInputChange('description', txt)}
-            error={uploadErrors.description}
-          />
-        </Form>
-        <Form>
-          <Picker
-            mode='dialog'
-            selectedValue={plantsValue}
-            style={{
-              height: 50,
-              width: 150,
-            }}
-            onValueChange={
-              (itemValue, itemIndex) => setPlantsValue(itemValue)
-            }>
-            <Item label="Plants" value={true} />
-            <Item label="Caretakers" value={false} />
-          </Picker>
-        </Form>
-        <View style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'row',
-          paddingBottom: 10,
-        }}>
-          <Button style={styles.formButton} block onPress={pickImage}>
-            <Text>Choose file</Text>
-          </Button>
-        </View>
-        <View style={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexDirection: 'row',
-          paddingBottom: 10,
-        }}>
-          <Button style={{
-            width: 250,
-            backgroundColor: '#318053',
-            shadowColor: '#000',
-            shadowOpacity: 0.3,
-            shadowRadius: 10,
-            elevation: 20,
-            shadowOffset: {
-              height: 5,
-            },
-          }} block disabled={(uploadErrors.title !== null ||
-            uploadErrors.description !== null || image === null)} onPress={doUpload}>
-            <Text>Upload</Text>
-          </Button>
-        </View>
+      <ImageBackground
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+        source={require('../assets/gradient.png')}>
+        <Content padder>
+          {image &&
+            <>
+              {fileType === 'image' ?
+                <Image
+                  source={{uri: image}}
+                  style={{height: 400, width: null, flex: 1}}
+                /> :
+                <Video
+                  source={{uri: image}}
+                  style={{height: 400, width: null, flex: 1}}
+                  useNativeControls={true}
+                />
+              }
+            </>
+          }
+          <View style={{paddingBottom: 20}}></View>
+          <Form>
+            <Text style={{color: 'white', paddingLeft: 10}}>Title</Text>
+            <FormTextInput
+              autoCapitalize="none"
+              value={inputs.title}
+              onChangeText={(txt) => handleInputChange('title', txt)}
+              error={uploadErrors.title}
+            />
+            <Text style={{color: 'white', paddingLeft: 10}}>Description</Text>
+            <FormTextInput
+              autoCapitalize="none"
+              value={inputs.description}
+              onChangeText={(txt) => handleInputChange('description', txt)}
+              error={uploadErrors.description}
+            />
+          </Form>
+          <Form>
+            <Picker
+              mode='dialog'
+              selectedValue={plantsValue}
+              style={{
+                height: 50,
+                width: 150,
+              }}
+              onValueChange={
+                (itemValue, itemIndex) => setPlantsValue(itemValue)
+              }>
+              <Picker Item style={{color: 'white'}}
+                label="Plants"
+                value={true} />
+              <Picker Item label="Caretakers"
+                value={false} />
+            </Picker>
+          </Form>
+          <View style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row',
+            padding: 10,
+          }}>
+            <Button style={styles.formButton} block onPress={pickImage}>
+              <Text>Choose file</Text>
+            </Button>
+          </View>
+          <View style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: 'row',
+          }}>
+            <Button style={{
+              width: 250,
+              backgroundColor: '#318053',
+              shadowColor: '#000',
+              shadowOpacity: 0.3,
+              shadowRadius: 10,
+              elevation: 20,
+              shadowOffset: {
+                height: 5,
+              },
+            }} block disabled={(uploadErrors.title !== null ||
+              uploadErrors.description !== null || image === null)}
+              onPress={doUpload}>
+              <Text>Upload</Text>
+            </Button>
+          </View>
 
-        <View style={{padding: 5}}></View>
-        <Text style={{textAlign: 'center'}} block onPress={doReset}>
+          <View style={{padding: 5}}></View>
           <Text style={{
+            textAlign: 'center',
             color: '#318053',
             fontFamily: 'Bellota',
             fontSize: 15,
-          }} > Reset</Text>
-        </Text>
-      </Content>
+          }} block onPress={doReset}>
+            Reset</Text>
+        </Content>
+      </ImageBackground>
     </Container >
   );
 };

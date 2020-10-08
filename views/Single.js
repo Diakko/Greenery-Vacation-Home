@@ -1,6 +1,7 @@
+/* eslint-disable indent */
 /* eslint-disable no-unused-vars */
 import React, {useEffect, useState} from 'react';
-import {Image} from 'react-native';
+import {Image, ImageBackground} from 'react-native';
 import PropTypes from 'prop-types';
 import {
   Card,
@@ -73,62 +74,69 @@ const Single = ({route}) => {
 
   return (
     <Container>
-      <Content padder>
-
-        <Card>
-          <CardItem bordered>
-            <Left>
-              <FontAwesome name="pagelines"
-                size={17} />
-              <Text>{owner.username}</Text>
-            </Left>
-          </CardItem>
-          <CardItem cardBody>
-            <>
-              {file.media_type === 'image' ?
-                <Image
-                  source={{uri: mediaUrl + file.filename}}
-                  style={{height: 400, width: null, flex: 1}}
-                /> :
-                <Video
-                  ref={handleVideoRef}
-                  source={{
-                    uri:
-                      error ? 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' :
-                        mediaUrl + file.filename,
-                  }}
-                  style={{height: 400, width: null, flex: 1}}
-                  useNativeControls={true}
-                  resizeMode="cover"
-                  posterSource={{uri: mediaUrl + file.screenshot}}
-                  usePoster={true}
-                  posterStyle={{height: 400, width: null, flex: 1}}
-                  onError={(err) => {
-                    console.log('video error', err);
-                    setError(true);
-                  }}
-                />
-              }
-            </>
-          </CardItem>
-          <CardItem>
-            <Text>
-              {file.description}
-            </Text>
-          </CardItem>
-
-          <View style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            flexDirection: 'row',
-            paddingTop: 20,
-          }}>
-            <CardItem>
-              <CommentForm fileId={file.file_id} />
+      <ImageBackground
+        style={{
+          width: '100%',
+          height: '100%',
+        }}
+        source={require('../assets/gradient.png')}>
+        <Content padder>
+          <Card>
+            <CardItem bordered>
+              <Left>
+                <FontAwesome name="pagelines"
+                  size={17} />
+                <Text>{owner.username}</Text>
+              </Left>
             </CardItem>
-          </View>
-        </Card>
-      </Content>
+            <CardItem cardBody>
+              <>
+                {file.media_type === 'image' ?
+                  <Image
+                    source={{uri: mediaUrl + file.filename}}
+                    style={{height: 400, width: null, flex: 1}}
+                  /> :
+                  <Video
+                    ref={handleVideoRef}
+                    source={{
+                      uri:
+                        error ? 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' :
+                          mediaUrl + file.filename,
+                    }}
+                    style={{height: 400, width: null, flex: 1}}
+                    useNativeControls={true}
+                    resizeMode="cover"
+                    posterSource={{uri: mediaUrl + file.screenshot}}
+                    usePoster={true}
+                    posterStyle={{height: 400, width: null, flex: 1}}
+                    onError={(err) => {
+                      console.log('video error', err);
+                      setError(true);
+                    }}
+                  />
+                }
+              </>
+            </CardItem>
+            <CardItem>
+              <Text>
+                {file.description}
+              </Text>
+            </CardItem>
+
+            <View style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'row',
+              paddingTop: 20,
+            }}>
+              <CardItem>
+                <CommentForm fileId={file.file_id} />
+              </CardItem>
+            </View>
+          </Card>
+        </Content>
+      </ImageBackground>
+
     </Container>
   );
 };

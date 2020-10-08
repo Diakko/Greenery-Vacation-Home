@@ -10,7 +10,7 @@ const MyCaretakers = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground
-        style={{width: '100%'}}
+        style={{width: '100%', height: '100%'}}
         source={require('../assets/gradient.png')}>
         <List navigation={navigation} all={false} plants={false} />
         <StatusBar style="auto" />

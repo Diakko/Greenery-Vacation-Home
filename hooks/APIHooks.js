@@ -3,8 +3,8 @@ import {useState, useEffect} from 'react';
 
 const apiUrl = 'http://media.mw.metropolia.fi/wbma/';
 
-const appIdentifierPlants = 'greenery_vacation_home_plants';
-const appIdentifierCaretakers = 'greenery_vacation_home_caretakers';
+const appIdentifierPlants = 'gvh_plants';
+const appIdentifierCaretakers = 'gvh_caretakers';
 
 const useLoadMedia = (all, userId, plants) => {
   const [mediaArray, setMediaArray] = useState([]);

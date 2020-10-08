@@ -5,7 +5,7 @@ import {validator} from '../utils/validator';
 const constraints = {
   title: {
     presence: {
-      message: 'Cannot be empty.',
+      message: 'cannot be empty.',
     },
     length: {
       minimum: 3,
@@ -14,7 +14,7 @@ const constraints = {
   },
   description: {
     presence: {
-      message: 'Cannot be empty.',
+      message: 'cannot be empty.',
     },
     length: {
       minimum: 5,

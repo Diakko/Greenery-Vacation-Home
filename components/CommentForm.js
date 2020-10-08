@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react';
-import {View, Button, Text, CardItem} from 'native-base';
+import {View, Button, Text, CardItem, Textarea} from 'native-base';
 import useCommentForm from '../hooks/CommentHooks';
 import AsyncStorage from '@react-native-community/async-storage';
-import {postComments, getComments, getUser} from '../hooks/APIHooks';
-import {OutlinedTextField} from '@ubaids/react-native-material-textfield';
+import {postComments, getComments} from '../hooks/APIHooks';
 import PropTypes from 'prop-types';
 
 const CommentForm = ({fileId}) => {
   const [comments, setComments] = useState([]);
-  const [owner, setOwner] = useState({});
+  const [] = useState({});
   const {
     handleInputChange,
     validateOnSend,
@@ -40,7 +39,6 @@ const CommentForm = ({fileId}) => {
     });
 
 
-
     try {
       setComments(await getComments(fileId));
     } catch (e) {
@@ -66,37 +64,42 @@ const CommentForm = ({fileId}) => {
         fontFamily: 'Bellota_bold',
         color: '#318053',
         fontSize: 17,
+        paddingBottom: 10,
       }}>Comments:</Text>
       {comments.map((comment) => (
         <View
+          style={{
+            paddingVertical: 5,
+          }}
           key={comment.comment_id} >
           {/* <Text>{owner.username}</Text> */}
           <CardItem style={{
             padding: 15,
             borderWidth: 1,
             borderRadius: 5,
-            // borderColor: 'rgb(75, 189, 106)',
           }}>
             <Text style={{fontSize: 14}}>{comment.comment}</Text>
           </CardItem>
         </View>
       ))}
-      <View style={{padding: 15}} />
-      <OutlinedTextField
+      <View style={{padding: 10}} />
+      <Textarea
+        style={{borderWidth: 1, borderRadius: 5, borderColor: '#4BBD6A'}}
         autoCapitalize="none"
-        tintColor='rgb(75, 189, 106)'
-        textColor='rgb(75, 189, 106)'
-        baseColor='rgb(75, 189, 106)'
-        errorColor='rgb(249, 235, 73)'
         label="Message"
+        placeholder='Leave a message...'
         onChangeText={(txt) => handleInputChange('comment', txt)}
         value={inputs.comment}
-
       />
+      <View style={{padding: 10}}></View>
       <Button
         title="Comment"
         onPress={doComment}
-        style={{alignSelf: 'center', backgroundColor: '#4BBD6A'}}
+        style={{
+          alignSelf: 'center',
+          backgroundColor: '#4BBD6A',
+          paddingTop: 10,
+        }}
       >
         <Text style={{
           fontSize: 15,

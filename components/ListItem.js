@@ -21,7 +21,7 @@ const ListItem = ({navigation, singleMedia, editable}) => {
       const userToken = await AsyncStorage.getItem('userToken');
       const result = await deleteFile(singleMedia.file_id, userToken);
       console.log('Delete file: ', result);
-      navigation.replace('MyPlants');
+      navigation.replace('Home');
     } catch (e) {
       console.error('deletebutton', e);
     }
@@ -43,13 +43,13 @@ const ListItem = ({navigation, singleMedia, editable}) => {
                 </Body>
               </Left>
             </CardItem>
-
+            <CardItem>
+              <Body>
+                <Text note numberOfLines={3} style={styles.description}>{singleMedia.description}</Text>
+              </Body>
+            </CardItem>
           </TouchableOpacity>
-          <CardItem>
-            <Body>
-              <Text note numberOfLines={3} style={styles.description}>{singleMedia.description}</Text>
-            </Body>
-          </CardItem>
+
           {editable && <>
             <View style={{flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center'}}>
               <Button transparent onPress={
